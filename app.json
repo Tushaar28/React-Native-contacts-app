@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "contacts_app",
+    "slug": "contacts_app",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "contacts_app"
+}
