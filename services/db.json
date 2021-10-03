@@ -1,0 +1,40 @@
+{
+  "contacts": [
+    {
+      "id": "Tushaar",
+      "name": "Tushaar",
+      "mobile": "8968980024",
+      "landline": "9625312519",
+      "photo": "",
+      "favourite": false
+    },
+    {
+      "id": "gtegreg",
+      "name": "gtegreg",
+      "mobile": "",
+      "landline": "",
+      "photo": "",
+      "favourite": true
+    },
+    {
+      "id": "Dummy",
+      "name": "Dummy",
+      "mobile": "987654310",
+      "landline": "",
+      "photo": "",
+      "favourite": true
+    },
+    {
+      "id": 1,
+      "name": "Ravi",
+      "mobile": "9997939193",
+      "landline": "",
+      "photo": "",
+      "favourite": true
+    }
+  ],
+  "recordId": {
+    "id": 1,
+    "value": 1
+  }
+}
