@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BASE_URL from "../services/api";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import {
   View,
   Text,
   StyleSheet,
   Button,
   TextInput,
-  Alert,
   CheckBox,
-  Image,
   ImageBackground,
   Dimensions,
 } from "react-native";
@@ -25,19 +22,6 @@ export default function CreateContact({ navigation }) {
   const [photo, setPhoto] = useState("");
   const [favourite, setFavourite] = useState(false);
 
-  //   useEffect(() => {
-  //     (async () => {
-  //       try {
-  //         const url = BASE_URL + "/recordId";
-  //         var response = await axios.get(url);
-  //         console.log(response.data.value);
-  //         setId(response.data.value);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     })();
-  //   }, []);
-
   const addContact = async () => {
     try {
       var url = BASE_URL + "/contacts";
@@ -50,11 +34,7 @@ export default function CreateContact({ navigation }) {
         favourite,
       };
       var response = await axios.post(url, body);
-      //   url = BASE_URL + "/recordId";
-      //   var body = {
-      //     value: id + 1,
-      //   };
-      //   response = await axios.put(url, body);
+
       navigation.navigate("ViewContacts");
     } catch (error) {
       console.log(error);

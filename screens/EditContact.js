@@ -7,9 +7,12 @@ import {
   StyleSheet,
   Button,
   TextInput,
-  Alert,
+  Dimensions,
+  ImageBackground,
   CheckBox,
 } from "react-native";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import ImagePicker from "react-native-image-crop-picker";
 
 export default function EditContact(props) {
   const contactInfo = props.route.params.contact;
@@ -31,15 +34,21 @@ export default function EditContact(props) {
         favourite,
       };
       var response = await axios.put(url, body);
-      //   url = BASE_URL + "/recordId";
-      //   var body = {
-      //     value: id + 1,
-      //   };
-      //   response = await axios.put(url, body);
+
       props.navigation.navigate("ViewContacts");
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const uploadPhoto = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then((image) => {
+      setPhoto(image.path);
+    });
   };
 
   if (!contactInfo) {
@@ -83,6 +92,24 @@ export default function EditContact(props) {
         />
         <Text style={styles.label}>Mark as favourite</Text>
       </View>
+      <Button
+        title="Uplaod photo"
+        onPress={uploadPhoto}
+        style={styles.checkbox}
+      />
+      <ImageBackground
+        source={{
+          uri: photo.length > 0 ? photo : null,
+        }}
+        style={{
+          ...styles.backgroundImage,
+        }}
+      >
+        {!photo ? (
+          <FontAwesome5 name="user-alt" size={125} color="white" />
+        ) : null}
+      </ImageBackground>
+
       <Button title="Save" onPress={() => editContact()} />
     </View>
   );
@@ -92,6 +119,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  uploadButton: {
+    marginTop: "50px",
+    marginBottom: "60px",
+    width: "100px",
+    padding: "50px",
+    margin: "50px",
   },
   inputContainer: {
     padding: 10,
@@ -105,6 +139,12 @@ const styles = StyleSheet.create({
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 20,
+  },
+  backgroundImage: {
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height / 5,
+    alignItems: "center",
+    justifyContent: "center",
   },
   checkbox: {
     alignSelf: "center",

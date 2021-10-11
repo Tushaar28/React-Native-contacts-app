@@ -8,45 +8,39 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useIsFocused } from "@react-navigation/native";
 import ContactCard from "../components/ContactCard";
+import { connect } from "react-redux";
+import { getFilteredContacts } from "../redux/action";
 
-export default function FavouriteContacts({ navigation }) {
+function FavouriteContacts(props) {
   const isFocused = useIsFocused();
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    getAllContacts();
+    props.getContacts();
   }, [isFocused]);
 
-  async function getAllContacts() {
-    try {
-      const url = BASE_URL + "/contacts?favourite=true";
-      var response = await axios.get(url);
-      setContacts(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // async function getAllContacts() {
+  //   try {
+  //     const url = BASE_URL + "/contacts?favourite=true";
+  //     var response = await axios.get(url);
+  //     setContacts(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
 
   return (
     <View style={styles.container}>
-      {/* <Ionicons
-        name="add-circle"
-        size={62}
-        color="green"
-        style={styles.addIcon}
-        onPress={() => navigation.navigate("CreateContact")}
-      /> */}
       <FlatList
-        data={contacts}
+        data={props.contacts}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate("Profile", {
+              props.navigation.navigate("Profile", {
                 contact: item,
               })
             }
@@ -58,6 +52,20 @@ export default function FavouriteContacts({ navigation }) {
     </View>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    contacts: state.filteredContacts || [],
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getContacts: () => dispatch(getFilteredContacts("favourite", true)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavouriteContacts);
 
 const styles = StyleSheet.create({
   container: {

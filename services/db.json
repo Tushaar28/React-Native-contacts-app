@@ -1,38 +1,5 @@
 {
-  "contacts": [
-    {
-      "id": "Tushaar",
-      "name": "Tushaar Tiwari",
-      "mobile": "9876543210",
-      "landline": "9625312519",
-      "photo": "",
-      "favourite": false
-    },
-    {
-      "id": "Dummy",
-      "name": "Dummy",
-      "mobile": "987654310",
-      "landline": "",
-      "photo": "",
-      "favourite": true
-    },
-    {
-      "id": 1,
-      "name": "Ravi",
-      "mobile": "9997939193",
-      "landline": "",
-      "photo": "",
-      "favourite": true
-    },
-    {
-      "id": "Test",
-      "name": "Test",
-      "mobile": "7888363794",
-      "landline": "",
-      "photo": "file:///storage/emulated/0/Android/data/com.contactsapp/files/Pictures/7c1f4a92-3a28-41cb-89fc-8a0e76d462ae.jpg",
-      "favourite": false
-    }
-  ],
+  "contacts": [],
   "recordId": {
     "id": 1,
     "value": 1

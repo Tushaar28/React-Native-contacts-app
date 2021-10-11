@@ -13,6 +13,8 @@ import {
 } from "@react-navigation/drawer";
 import EditContact from "./screens/EditContact";
 import FavouriteContacts from "./screens/FavouriteContacts";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -38,22 +40,24 @@ function MyStackNavigator(props) {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        initialRouteName="ViewContacts"
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-      >
-        <Drawer.Screen
-          // options={{ headerShown: false }}
-          name="Drawer"
-          component={(props) => <MyStackNavigator {...props} />}
-        />
-        <Drawer.Screen
-          // options={{ headerShown: false }}
-          name="Favourites"
-          component={(props) => <FavouriteContacts {...props} />}
-        />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator
+          initialRouteName="ViewContacts"
+          drawerContent={(props) => <CustomDrawerContent {...props} />}
+        >
+          <Drawer.Screen
+            // options={{ headerShown: false }}
+            name="Drawer"
+            component={(props) => <MyStackNavigator {...props} />}
+          />
+          <Drawer.Screen
+            // options={{ headerShown: false }}
+            name="Favourites"
+            component={(props) => <FavouriteContacts {...props} />}
+          />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
