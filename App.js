@@ -12,6 +12,7 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 import EditContact from "./screens/EditContact";
+import FavouriteContacts from "./screens/FavouriteContacts";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -46,6 +47,11 @@ export default function App() {
           // options={{ headerShown: false }}
           name="Drawer"
           component={(props) => <MyStackNavigator {...props} />}
+        />
+        <Drawer.Screen
+          // options={{ headerShown: false }}
+          name="Favourites"
+          component={(props) => <FavouriteContacts {...props} />}
         />
       </Drawer.Navigator>
     </NavigationContainer>
