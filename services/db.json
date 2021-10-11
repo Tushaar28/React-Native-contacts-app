@@ -2,17 +2,9 @@
   "contacts": [
     {
       "id": "Tushaar",
-      "name": "Tushaar",
-      "mobile": "8968980024",
+      "name": "Tushaar Tiwari",
+      "mobile": "9876543210",
       "landline": "9625312519",
-      "photo": "",
-      "favourite": false
-    },
-    {
-      "id": "gtegreg",
-      "name": "gtegreg",
-      "mobile": "",
-      "landline": "",
       "photo": "",
       "favourite": true
     },

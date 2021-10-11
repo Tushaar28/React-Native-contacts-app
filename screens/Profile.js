@@ -12,6 +12,9 @@ import {
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Ionicons from "react-native-vector-icons/Ionicons";
+import axios from "axios";
+import BASE_URL from "../services/api";
 import { getColorByLetter } from "../utils";
 
 export default function Profile({ navigation, route }) {
@@ -33,10 +36,29 @@ export default function Profile({ navigation, route }) {
     return <ActivityIndicator size={32} />;
   }
 
-  const deleteContact = async (contact) => {};
+  const deleteContact = async (contact) => {
+    try {
+      var url = BASE_URL + "/contacts/" + contact.id;
+      var response = await axios.delete(url);
+      navigation.navigate("ViewContacts");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <View style={styles.container}>
+      <Ionicons
+        name="pencil-outline"
+        size={30}
+        color="green"
+        style={styles.editIcon}
+        onPress={() =>
+          navigation.navigate("EditContact", {
+            contact: contact,
+          })
+        }
+      />
       <ImageBackground
         source={{
           uri: contact.hasThumbnail ? contact.thumbNailpath : null,
@@ -98,6 +120,12 @@ export default function Profile({ navigation, route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  editIcon: {
+    top: 70,
+    right: 20,
+    position: "absolute",
+    zIndex: 1,
   },
   backgroundImage: {
     width: Dimensions.get("screen").width,
