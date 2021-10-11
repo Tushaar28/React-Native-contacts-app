@@ -61,14 +61,14 @@ export default function Profile({ navigation, route }) {
       />
       <ImageBackground
         source={{
-          uri: contact.hasThumbnail ? contact.thumbNailpath : null,
+          uri: contact.photo.length > 0 ? contact.photo : null,
         }}
         style={{
           ...styles.backgroundImage,
           backgroundColor: contact.color,
         }}
       >
-        {!contact.hasThumbnail ? (
+        {!contact.photo ? (
           <FontAwesome5 name="user-alt" size={125} color="white" />
         ) : null}
         <AntDesign

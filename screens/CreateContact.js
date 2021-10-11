@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import BASE_URL from "../services/api";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import {
   View,
   Text,
@@ -9,7 +10,12 @@ import {
   TextInput,
   Alert,
   CheckBox,
+  Image,
+  ImageBackground,
+  Dimensions,
 } from "react-native";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import ImagePicker from "react-native-image-crop-picker";
 
 export default function CreateContact({ navigation }) {
   const [id, setId] = useState(-1);
@@ -55,6 +61,16 @@ export default function CreateContact({ navigation }) {
     }
   };
 
+  const uploadPhoto = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+    }).then((image) => {
+      setPhoto(image.path);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -92,7 +108,29 @@ export default function CreateContact({ navigation }) {
         />
         <Text style={styles.label}>Mark as favourite</Text>
       </View>
-      <Button title="Save" onPress={() => addContact()} />
+      <Button
+        title="Uplaod photo"
+        onPress={uploadPhoto}
+        style={styles.checkbox}
+      />
+      <ImageBackground
+        source={{
+          uri: photo.length > 0 ? photo : null,
+        }}
+        style={{
+          ...styles.backgroundImage,
+        }}
+      >
+        {!photo ? (
+          <FontAwesome5 name="user-alt" size={125} color="white" />
+        ) : null}
+      </ImageBackground>
+
+      <Button
+        title="Save"
+        onPress={() => addContact()}
+        style={styles.saveButton}
+      />
     </View>
   );
 }
@@ -101,6 +139,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+  },
+  uploadButton: {
+    marginTop: "50px",
+    marginBottom: "60px",
+    width: "100px",
+    padding: "50px",
+    margin: "50px",
   },
   inputContainer: {
     padding: 10,
@@ -111,6 +156,12 @@ const styles = StyleSheet.create({
     borderBottomColor: "gray",
     padding: 10,
   },
+  backgroundImage: {
+    width: Dimensions.get("screen").width,
+    height: Dimensions.get("screen").height / 5,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   checkboxContainer: {
     flexDirection: "row",
     marginBottom: 20,
@@ -120,5 +171,8 @@ const styles = StyleSheet.create({
   },
   label: {
     margin: 8,
+  },
+  saveButton: {
+    marginTop: "100px",
   },
 });

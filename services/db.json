@@ -23,6 +23,14 @@
       "landline": "",
       "photo": "",
       "favourite": true
+    },
+    {
+      "id": "Test",
+      "name": "Test",
+      "mobile": "7888363794",
+      "landline": "",
+      "photo": "file:///storage/emulated/0/Android/data/com.contactsapp/files/Pictures/7c1f4a92-3a28-41cb-89fc-8a0e76d462ae.jpg",
+      "favourite": false
     }
   ],
   "recordId": {
